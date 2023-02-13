@@ -1,4 +1,4 @@
-package dev.weazyexe.passkeys.ui.common.snackbar
+package dev.weazyexe.passkeys.ui.common.components.snackbar
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding

@@ -1,4 +1,4 @@
-package dev.weazyexe.passkeys.ui.common.snackbar
+package dev.weazyexe.passkeys.ui.common.components.snackbar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info

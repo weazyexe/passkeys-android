@@ -1,6 +1,5 @@
 package dev.weazyexe.passkeys.ui.screens.auth
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,12 +33,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.weazyexe.passkeys.R
-import dev.weazyexe.passkeys.ui.common.AppTextField
-import dev.weazyexe.passkeys.ui.common.snackbar.ErrorSnackbar
+import dev.weazyexe.passkeys.ui.common.components.textfield.AppTextField
+import dev.weazyexe.passkeys.ui.common.components.snackbar.ErrorSnackbar
+import dev.weazyexe.passkeys.ui.common.preview.PasskeysScreenPreview
 import dev.weazyexe.passkeys.ui.theme.AppTypography
 import dev.weazyexe.passkeys.ui.theme.PasskeysTheme
 import kotlinx.coroutines.delay
@@ -185,11 +183,7 @@ fun AuthBody(
     }
 }
 
-@Preview(
-    showBackground = true,
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    device = Devices.PIXEL_3A
-)
+@PasskeysScreenPreview
 @Composable
 fun AuthBodyPreview() {
     PasskeysTheme {

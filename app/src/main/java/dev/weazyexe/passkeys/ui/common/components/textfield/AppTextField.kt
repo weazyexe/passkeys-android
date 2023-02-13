@@ -1,4 +1,4 @@
-package dev.weazyexe.passkeys.ui.common
+package dev.weazyexe.passkeys.ui.common.components.textfield
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
