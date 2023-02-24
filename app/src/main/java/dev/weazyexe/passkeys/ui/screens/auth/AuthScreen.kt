@@ -12,5 +12,5 @@ private const val ROUTE = "/auth"
 )
 @Composable
 fun AuthScreen() {
-
+    AuthBody()
 }
