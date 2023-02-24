@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="error_no_internet">There is no Internet connection, please try again</string>
+    <string name="error_timed_out">Request was timed out, please try again</string>
+    <string name="error_unknown">Something went wrong, please try again</string>
+
     <string name="content_description_password_eye_visible">Password hide button (visible now)</string>
     <string name="content_description_password_eye_hidden">Password hide button (hidden now)</string>
     <string name="content_description_recognize_emotions_button">Recognize button</string>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="auth_email_text">E-mail</string>
-    <string name="auth_password_text">Password</string>
-    <string name="auth_sign_in_text">Sign in</string>
+    <string name="auth_login_text">Login</string>
+    <string name="auth_sign_in_text">Sign in with Passkey</string>
     <string name="auth_sign_up_text">Create account</string>
 
     <string name="auth_app_name_title">Passkeys demo</string>
