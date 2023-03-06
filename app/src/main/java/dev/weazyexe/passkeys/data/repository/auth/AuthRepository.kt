@@ -1,10 +1,15 @@
-package dev.weazyexe.passkeys.data.repository
+package dev.weazyexe.passkeys.data.repository.auth
 
 import androidx.credentials.CreatePublicKeyCredentialRequest
 import dev.weazyexe.passkeys.data.network.auth.AuthApi
 import dev.weazyexe.passkeys.data.network.auth.dto.UserRegisterRequest
+import dev.weazyexe.passkeys.data.network.auth.dto.asDomainEntity
+import dev.weazyexe.passkeys.domain.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import retrofit2.HttpException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,13 +18,18 @@ class AuthRepository @Inject constructor(
     private val authApi: AuthApi
 ) {
 
-    fun signIn(username: String): Flow<CreatePublicKeyCredentialRequest> = flow {
+    fun startRegistration(username: String): Flow<CreatePublicKeyCredentialRequest> = flow {
         val response = authApi.registerRequest(UserRegisterRequest(username))
         if (!response.isSuccessful) {
-            throw Exception("Response code isn't 2xx")
+            throw HttpException(response)
         }
 
         val body = response.body()?.string() ?: throw Exception("Response body is empty")
         emit(CreatePublicKeyCredentialRequest(body))
+    }
+
+    fun sendRegistrationResponse(response: String): Flow<User> = flow {
+        val body = RequestBody.create(MediaType.get("application/json"), response)
+        emit(authApi.registerResponse(body).asDomainEntity())
     }
 }

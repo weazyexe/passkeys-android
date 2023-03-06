@@ -2,7 +2,9 @@
 <resources>
     <string name="error_no_internet">There is no Internet connection, please try again</string>
     <string name="error_timed_out">Request was timed out, please try again</string>
+    <string name="error_http">Bad request: %s</string>
     <string name="error_unknown">Something went wrong, please try again</string>
+    <string name="error_user_not_found">User not found</string>
 
     <string name="content_description_password_eye_visible">Password hide button (visible now)</string>
     <string name="content_description_password_eye_hidden">Password hide button (hidden now)</string>

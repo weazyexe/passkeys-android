@@ -2,11 +2,14 @@ package dev.weazyexe.passkeys.ui.common.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -49,4 +52,10 @@ abstract class CoreViewModel<S : State, E : Effect>() : ViewModel() {
     protected fun E.emit() = viewModelScope.launch {
         _effects.send(this@emit)
     }
+
+    /**
+     * Launches the flow on main thread in view model scope
+     */
+    protected fun Flow<*>.launchInViewModelScope() =
+        this.flowOn(Dispatchers.Main).launchIn(viewModelScope)
 }

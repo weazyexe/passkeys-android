@@ -11,6 +11,8 @@ import androidx.credentials.CredentialManager
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import dev.weazyexe.passkeys.ui.screens.destinations.MainScreenDestination
 import dev.weazyexe.passkeys.utils.ReceiveEffect
 import dev.weazyexe.passkeys.utils.findActivity
 import kotlinx.coroutines.launch
@@ -20,7 +22,9 @@ private const val ROUTE = "/auth"
 @RootNavGraph(start = true)
 @Destination(route = ROUTE)
 @Composable
-fun AuthScreen() {
+fun AuthScreen(
+    navigator: DestinationsNavigator
+) {
     val viewModel = hiltViewModel<AuthViewModel>()
     val state by viewModel.uiState.collectAsState()
 
@@ -40,14 +44,15 @@ fun AuthScreen() {
                     }
                 }
             }
-            is AuthEffect.ShowError -> {
-                Toast.makeText(context, context.getString(message), Toast.LENGTH_LONG).show()
+            is AuthEffect.OpenMainScreen -> {
+                navigator.navigate(MainScreenDestination)
             }
         }
     }
 
     AuthBody(
         login = state.login,
+        isLoading = state.accountCreationLoadState.isLoading,
         onLoginChange = viewModel::updateLogin,
         onSignInClick = viewModel::startRegistration,
         onSignUpClick = viewModel::signUp
