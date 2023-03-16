@@ -18,6 +18,7 @@ import java.util.concurrent.TimeoutException
  */
 fun <T> Flow<T>.io() = this
     .catch {
+        Log.e("REKO", "Error", it)
         throw when (it) {
             is UnknownHostException,
             is ConnectException -> ResponseError.NoInternetError()
@@ -31,7 +32,6 @@ fun <T> Flow<T>.io() = this
             }
 
             else -> {
-                Log.e("REKO", "Unknown error", it)
                 ResponseError.UnknownError()
             }
         }

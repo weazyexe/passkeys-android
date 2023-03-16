@@ -1,7 +1,15 @@
 <network-security-config>
     <domain-config>
-        <!-- Make sure your URL Server here -->
         <domain includeSubdomains="true">guarded-dusk-66137.herokuapp.com</domain>
+        <trust-anchors>
+            <certificates src="user"/>
+            <certificates src="system"/>
+        </trust-anchors>
+    </domain-config>
+
+    <domain-config>
+        <!-- Make sure your URL Server here -->
+        <domain includeSubdomains="true">surface.me</domain>
         <trust-anchors>
             <certificates src="user"/>
             <certificates src="system"/>

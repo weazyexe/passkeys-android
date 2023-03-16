@@ -7,8 +7,8 @@ import dev.weazyexe.passkeys.data.network.auth.dto.asDomainEntity
 import dev.weazyexe.passkeys.domain.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,7 +29,7 @@ class AuthRepository @Inject constructor(
     }
 
     fun sendRegistrationResponse(response: String): Flow<User> = flow {
-        val body = RequestBody.create(MediaType.get("application/json"), response)
+        val body = response.toRequestBody("application/json".toMediaType())
         emit(authApi.registerResponse(body).asDomainEntity())
     }
 }
